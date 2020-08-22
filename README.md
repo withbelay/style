@@ -5,8 +5,8 @@ These are just general guidelines for keeping the WOLF code base organized
 ## Table of Contents
 
 * **Languages**
-  * [**Javascript**](docs/Languages/Javascript/index.md)
-  * [**React / ReactNative**](docs/Languages/Javascript/React/index.md)
-* [**Development**](docs/Development/index.md)
-* [**Tools**](docs/Tools/index.md)
-* [**Git**](docs/Git/index.md)
+  * [**Javascript**](Docs/Languages/Javascript/index.md)
+  * [**React / ReactNative**](Docs/Languages/Javascript/React/index.md)
+* [**Development**](Docs/Development/index.md)
+* [**Tools**](Docs/Tools/index.md)
+* [**Git**](Docs/Git/index.md)
