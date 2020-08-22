@@ -10,9 +10,9 @@ For development purposes both `LTS` and `Current` versions of Node are fine.
 
 ## **Comments**
 
-Use JsDoc to comment functions whenever possible, not necessary for functions that aren't exported, but still highly preffered. All backend endpoints/websockets must be documented with ApiDoc.
+Use JsDoc to comment functions whenever possible, not necessary for functions that aren't exported, but still highly preferred. All backend endpoints/websockets must be documented with ApiDoc.
 
-Comments describing design descisions and explaining more complicated code are useful and encouraged.
+Comments describing design decisions and explaining more complicated code are useful and encouraged.
 
 ## **NPM and Yarn**
 
@@ -26,23 +26,23 @@ Imports should for the most part be located at the very top of the file. Notable
 
 ### **import order**
 
-There is no set import order across files, but within a file imports should typically be seperated by `node_modules` and local files.
+There is no set import order across files, but within a file imports should typically be separated by `node_modules` and local files.
 
 ### **default export**
 
-When creating modules don't use default export. Notable exceptions include React / ReactNative componenets.
+When creating modules don't use default export. Notable exceptions include React / ReactNative components.
 
-## **Dont Trust Data!**
+## **Don't Trust Data!**
 
 Assume that data being sent can be corrupted/tampered with/wrong etc.
 
 ### **For Backend**
 
 1. Always validate users on the backend before allowing them to make changes
-    1. server should return relevant 4xx error
+    1. server should return relevant `4xx` error
     2. websocket server should kick the client off
 2. Always validate information that the user/client sends to the server
-    1. server should return relevant 4xx error
+    1. server should return relevant `4xx` error
     2. websocket server should kick the client off
 
 ### **For Frontend**
@@ -52,7 +52,7 @@ Data fields from server response should be checked for existence before they are
 
 ## **Ternary Statements**
 
-Ternary statements are good for reducing code size while maintaining readability. It is up to the author to determine when ternarys will make code more readable and when they wont.  
+Ternary statements are good for reducing code size while maintaining readability. It is up to the author to determine when ternarys will make code more readable and when they won't.  
 
 ### **use:**
 
@@ -72,7 +72,7 @@ if(number % 2 === 0) {
 
 ## **JS Destructuring**
 
-Destructuing of both objects and arrays is preffered whenever possible.
+Destructuring of both objects and arrays is preferred whenever possible.
 
 ### **use:**
 
@@ -83,7 +83,7 @@ const [a, b] = x;
 const {o} = y;
 ```
 
-### **isntead of:**
+### **instead of:**
 
 ```javascript
 const x = [10, 20];
@@ -99,7 +99,7 @@ const o = y.o;
 
 Whenever possible use `async/await` over Promises and callbacks.
 
-If 2 or more async functions both need to be awaited, but aren't reliant on eachother use `Promise.all` like so:
+If 2 or more async functions both need to be awaited, but aren't reliant on each other use `Promise.all` like so:
 
 ```javascript
 await Promise.all([
@@ -108,11 +108,13 @@ await Promise.all([
 ]);
 ```
 
-**NOTE:** `async/await` is really just a wrapper around Promises. a Promise can be awaited to be resolved. and an async function just returns a Promise that resolves to the return value. The use of `async/await` is preffered purely for readability and to reduce confusion.
+**NOTE:** `async/await` is really just a wrapper around Promises. a Promise can be awaited to be resolved. and an async function just returns a Promise that resolves to the return value. The use of `async/await` is preferred purely for readability and to reduce confusion.
 
-**NOTE:** `Promise.all` is *technically* parallel the vast majoirty of the time the functions will be blocking and will be executed concurrently. This will rarely matter, but it is something to be aware of if expecting true parallelization.
+**NOTE:** `Promise.all` is *technically* parallel the vast majority of the time the functions will be blocking and will be executed concurrently. This will rarely matter, but it is something to be aware of if expecting true parallelization.
 
 ### **Error Catching**
 
 All `async/await` functions should be wrapped in a `try/catch` block  
 All `Promises` should have error catching using `.catch(e)`
+
+

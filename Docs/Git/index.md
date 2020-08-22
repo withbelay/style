@@ -68,7 +68,7 @@ Note: The reviewer doesn't need to merge if there is room for discussion about t
 
 It is strongly preferred that code is squashed prior to review, the steps for this are listed below.
 
-It is recommended to squash code prior to review / merge since it will prevent unnecessary clutter on the `dev` branch. The reasons to use the manual squash and merge technique outlined below is due to Github's "squash and merge" feature not actually squashing code. The way Github's "squash and merge" works is more aking to a rebase of `dev` than anything. This will result in extremely inaccurate git history that is fragmented between git and Github. This can cause issues when trying to find out when or by who code was written. **It is strongly advised not to use the built in Github squash**, not squashing code is better.
+It is recommended to squash code prior to review / merge since it will prevent unnecessary clutter on the `dev` branch. The reasons to use the manual squash and merge technique outlined below is due to Github's "squash and merge" feature not actually squashing code. The way Github's "squash and merge" works is more akin to a rebase of `dev` than anything. This will result in extremely inaccurate git history that is fragmented between git and Github. This can cause issues when trying to find out when or by who code was written. **It is strongly advised not to use the built in Github squash**, not squashing code is better.
 
 ### **Steps for Squashing Code** 
 

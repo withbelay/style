@@ -10,7 +10,7 @@
 export const User = (props) => <User {...props} />;
 ```
 
-### **Use only functional componenets**
+### **Use only functional components**
 
 #### **use:**
 

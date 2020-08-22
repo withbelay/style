@@ -2,7 +2,7 @@
 
 [Return to Table of Contents](/README.md)
 
-This is a reccomended set of tools. They are by no means required but they can be useful for development.
+This is a recommended set of tools. They are by no means required but they can be useful for development.
 
 ## **MongoDB Compass**
 
@@ -37,7 +37,7 @@ Displays the author, commit, and time for each line of code.
 #### **GitIgnore Support**
 
 [**VSCode Marketplace Link**](https://marketplace.visualstudio.com/items?itemName=codezombiech.gitignore)  
-Langauge support for git ignore files
+Language support for git ignore files
 
 #### **GitHub PR and Issues**
 
@@ -52,7 +52,7 @@ USeful JS and React / ReactNative code snippets
 #### **JS FlowChart**
 
 [**VSCode Marketplace Link**](https://marketplace.visualstudio.com/items?itemName=MULU-github.jsflowchart)  
-This can create Flowcharts out of a lot of JS code, this can be useful to understand how code somebody else wrote, especially for beginners.
+This can create Flowcharts out of a lot of JS code, this can be useful to understand how somebody else's code works, especially for beginners.
 
 #### **Better Comments**
 
