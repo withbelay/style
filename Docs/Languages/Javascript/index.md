@@ -57,7 +57,7 @@ Ternary statements are good for reducing code size while maintaining readability
 ### **use:**
 
 ```javascript
-return number % 2 === 0 ? true : false
+return number % 2 === 0 ? true : false;
 ```
 
 ### **instead of:**
