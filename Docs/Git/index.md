@@ -52,7 +52,7 @@ branches should be in the format `<Type>/<Name>` where `<Type>` is something lik
 
 Before opening a Pull Request make sure the branch is up to date with `dev`, when working on branches for a long period of time it is useful to regularly merge `dev` into the current branch or rebase the branch of `dev`. This is done to prevent merge issues and to prevent overwriting code that was recently merged into `dev`.
 
-When opening a Pull Request and any necessary github labels, and write a clear description as to what the goal of the Pull Request is (linking to a specific trello card can be useful). For more complicated Pull Requests checklists can be extremely useful.
+When opening a Pull Request and any relevant github labels, and write a clear description as to what the goal of the Pull Request is (linking to a specific trello card can be useful). For more complicated Pull Requests checklists can be extremely useful.
 
 There is no need to request approval for Pull Request, any PR that doesn't have the `WIP` label will be looked at within a day or two. If a specific person should review the code, then a review should be requested from them.
 
