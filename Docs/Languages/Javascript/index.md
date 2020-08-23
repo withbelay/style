@@ -57,16 +57,16 @@ Ternary statements are good for reducing code size while maintaining readability
 ### **use:**
 
 ```javascript
-return number % 2 === 0 ? true : false;
+return number % 2 === 0 ? "even" : "odd";
 ```
 
 ### **instead of:**
 
 ```javascript
 if(number % 2 === 0) {
-    return true;
+    return "even";
 } else {
-    return false;
+    return "odd";
 }
 ```
 
