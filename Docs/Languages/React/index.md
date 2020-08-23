@@ -29,3 +29,8 @@ class Welcome extends React.Component {
   }
 }
 ```
+
+## **PropTypes**
+
+PropTypes should be used whenever possible. If you see any code that doesn't have proptypes it would be appreciated to fix it, open a github issue, or inform the author.
+For more information on using proptypes see [**here**](https://github.com/facebook/prop-types).
