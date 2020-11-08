@@ -5,6 +5,7 @@
 ## Table Of Contents
 
 * [**General**]((#general))
+* [**Commits**]((#commits))
 * [**Branches**]((#branches))
 * [**Pull Requests**]((#pull-requests))
 
@@ -41,6 +42,46 @@ Push to origin: `git push`
 Pull from origin `git pull`  
 Merge `dev` into current branch `git merge dev` (make sure to pull from `dev` first)  
 Delete all branches locally: `git branch --list | grep -v "\*" | grep -v "dev" | xargs -n 1 git branch -D`
+
+## **Commits**
+
+Git commits should follow the following rules in order to keep the git log clean and readable.
+
+### 1. Body ###
+
+Git commits with extensive bodies should be avoided. If there is a need to be that descriptive in a commit it should be a PR, if its part of a PR it can be added as a note to the main description of the PR or as a discussion. Commit messages aren't looked at frequently in our workflow so important information should never be there.
+
+If creating commit messages with bodies seperate the subject line from the body with a blank line.
+
+### 2. 50 Char Limit ###
+
+Git commit messages should be approximately under 50 characters. This should be long enough to provide an accurate 1-liner of what a commit does. Note: Github truncates messages over 72 characters so that is the hard limit, though exceeding 50 should be avoided.
+
+Using common abbreviations such as `+` instead of `and` can both help reduce commit message size, as well as making commit messages faster to read
+
+Sample config setting to add rulers in VSCode for git-commit if helpful:
+```
+"[git-commit]": {
+  "editor.rulers": [50, 72]
+}
+```
+
+### 3. Sentence Capitlization ###
+
+Capitlize the first word and proper nouns.
+
+### 4. Avoid Punctuation ###
+
+Punctiation at the end of a commit messages is a waste of characters. If commits need to be split into multiple sentences and `+` won't suffice, they should have a more descriptive note/discussion comment on the relevant PR.
+
+### 5. Imperative Mood ###
+
+Using the imperative mood in commit messages is clearer and follows Git's own conventions.
+
+The imperative mood is essentially just a command. Something like: "Move logic file to hooks folder"
+A good way to check if a commit message is imperative is to see if it fills in the end of this sentence:
+
+> If applied, this commit will <ins><i>your commit message</i></ins>
 
 ## **Branches**
 
