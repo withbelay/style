@@ -11,7 +11,7 @@ A large portion of this guide was informed and uses modified examples from the [
 There are 3 driving concepts behind this style guide and our engineering philosophy in general:
 
 1. Keep it Simple - Code should be straightforward and understandable by other engineers with as little effort as possible. Avoid sprawling conditionals, make the states components can be in as obvious as possible, and break things up into multiple functions/components when complexity adds up
-2. Keep it Terse - Code should be as compact as it needs to be without any excess fluff. Prefer implicit over explicit. JSX should be as optimal as possible without any unecessary components or styles.
+2. Keep it Terse - Code should be as compact as it needs to be without any excess fluff. Prefer implicit over explicit. JSX should be as optimal as possible without any unnecessary components or styles.
 3. Keep it Clean - Use ESLint to automatically format your code to our standards. Use whitespace to break up constant declarations from function declarations and the JSX. Don't leave any unused variables or imports. 
 
 ## Avoid These
@@ -83,7 +83,7 @@ Javascript as a language was developed in just 10 days, and as you might expect 
 
 #### A note about Immer
 
-So now this is going to sound like it completely contradicts the above statements, but there is one specific scenario where writing mutating code is actually fine, and that is in redux toolkit reducers. Redux toolkit makes use of the [Immer](https://immerjs.github.io/immer/) library, which means that redux reducers recieve a *copy* of the current state called a draft which can be modified with the usual methods, then that draft is used to create the new state.
+So now this is going to sound like it completely contradicts the above statements, but there is one specific scenario where writing mutating code is actually fine, and that is in redux toolkit reducers. Redux toolkit makes use of the [Immer](https://immerjs.github.io/immer/) library, which means that redux reducers receive a *copy* of the current state called a draft which can be modified with the usual methods, then that draft is used to create the new state.
 
 ```js
 .addCase(createAlpacaACHRelationship.fulfilled, (state, action) => {
@@ -183,7 +183,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
   import Component from '@/path/Component';
   ```
 
-- Acronyms and initialisms should always be all uppercased, or all lowercased
+- Acronyms and initialisms should always be all uppercase, or all lowercase
 
   ```Js
   // bad
@@ -810,7 +810,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Don't provide default arguments
 
-  > Consider the following real WOLF example. This function takes in a number and an optional object that contains the specific configuration of how that number should be formatted. It would be incredibly unweildy if every time you called it you gave it every single option, even if you don't actually need it.
+  > Consider the following real WOLF example. This function takes in a number and an optional object that contains the specific configuration of how that number should be formatted. It would be incredibly unwieldy if every time you called it you gave it every single option, even if you don't actually need it.
 
   ```js
   export function formatNumber(
@@ -937,7 +937,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 ## Components & CSS
 
-- Keep JSX as simple and as optimized as possible. There should be no unecessary views or unused styles. It is often worth refactoring or at least re-analyzing your JSX and CSS styles before making a PR.
+- Keep JSX as simple and as optimized as possible. There should be no unnecessary views or unused styles. It is often worth refactoring or at least re-analyzing your JSX and CSS styles before making a PR.
 
   ```jsx
   // bad
@@ -1013,7 +1013,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Make sure to read up on UIKitten for how to automatically apply specific styles to common elements like `<Text />` and `<Button />`
 
-- Use UIKitten StyleSheets for CSS, don't inline styles unless you need them to be programatically defined
+- Use UIKitten StyleSheets for CSS, don't inline styles unless you need them to be programmatically defined
 
 ## UIKitten
 
@@ -1021,7 +1021,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
   > We use UIKitten for 3 things:
   >
-  > 1. Theme provider (allows us to switch between light and dark mode i.e. independetly set colors as well as a shared general theme)
+  > 1. Theme provider (allows us to switch between light and dark mode i.e. independently set colors as well as a shared general theme)
   > 2. Themed colors in CSS styling (allows us to reference theme colors in our CSS)
   > 3. Component Library (commonly used components like `<Text />` and `<Button />` that use our design language)
 
@@ -1043,7 +1043,7 @@ From the React Native Docs: "**What is a Hook?** A Hook is a special function th
 
 ### [useState](https://reactjs.org/docs/hooks-state.html)
 
-You may be thinking, 'if all of our components are functions, how is information preserved beteween function calls?'. The answer is state. Redux Toolkit allows us to manage state independently of our components, and lets us interact with the state via a single mutable reference (which is `state`, that thing passed to every reducer and selector), and that seems all fine but what if we need something outside of that system, say to store a unique error message or loading state in only one specific component? It doesn't make sense to add something to redux unless multiple parts of the application depend on that state, so if we want a component to be stateful without Redux Toolkit, we need `useState`.
+You may be thinking, 'if all of our components are functions, how is information preserved between function calls?'. The answer is state. Redux Toolkit allows us to manage state independently of our components, and lets us interact with the state via a single mutable reference (which is `state`, that thing passed to every reducer and selector), and that seems all fine but what if we need something outside of that system, say to store a unique error message or loading state in only one specific component? It doesn't make sense to add something to redux unless multiple parts of the application depend on that state, so if we want a component to be stateful without Redux Toolkit, we need `useState`.
 
 ```jsx
 // The state example from the docs
@@ -1055,7 +1055,7 @@ const Widget = ({}) => {
   const increment = () => setCount(count + 1);
 
 	return (
-    // Now everytime we press this button, our state changes which triggers a rerender that then shows the new changes
+    // Now every time we press this button, our state changes which triggers a rerender that then shows the new changes
     <Button onClick={increment}>
     	I count things
     </Button>
@@ -1077,7 +1077,7 @@ const foo = useCallback(
 );
 
 // note, some things are NOT worth memoizing!
-// this needs even more time to calculate because of the overhead of memoizing, small things are not worth memozing
+// this needs even more time to calculate because of the overhead of memoizing, small things are not worth memoizing
 const doubler = useCallback(
   () => x * 2,
   [x], 
@@ -1110,7 +1110,7 @@ useEffect(() => {
 
 ### [useRef](https://reactjs.org/docs/hooks-reference.html#useref)
 
-`useRef` allows you to create a mutable reference to an object that's `.current` property is whatever you give to it. The reference will exist for the full lifetime of the component. This might seem similar to state but updating a ref does not trigger a rerender. A common use case is keeping a ref to a specific comonent (typically an input) to manipulate it.
+`useRef` allows you to create a mutable reference to an object that's `.current` property is whatever you give to it. The reference will exist for the full lifetime of the component. This might seem similar to state but updating a ref does not trigger a rerender. A common use case is keeping a ref to a specific component (typically an input) to manipulate it.
 
 ```jsx
 // a simplified example from WOLF code
@@ -1385,7 +1385,7 @@ const PositionIndicator = ({price}) => {
 - Sometimes a bit of extra whitespace is a good idea to improve readability. If code sections have little to do with each other, inserting whitespace between them is a good idea
 
   ```jsx
-  // variable declarations should be split from function declarations for instance, and indivudal functions/components/returns should have whitespace between them
+  // variable declarations should be split from function declarations for instance, and individual functions/components/returns should have whitespace between them
   const [error, setError] = useState(null);
   const theme = useTheme();
   const color = value > 0 ? theme.positive : theme.negative;
