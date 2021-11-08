@@ -1005,7 +1005,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Boolean properties that are false by default can be applied by just including their name
 
-  ```Jsx
+  ```jsx
   // acceptable
   <NavBar backButton={true} />
 
@@ -1233,7 +1233,7 @@ const PositionIndicator = ({price}) => {
 
   > Otherwise it will be recreated on each rerender
 
-  ```Jsx
+  ```jsx
   // bad
   const Widget = ({}) => {
     const onPress = () => console.log('i get made every rerender');
@@ -1254,6 +1254,49 @@ const PositionIndicator = ({price}) => {
 - Make use of `useMemo` and `useCallback`
 
   > See the Hooks section for more
+
+## Robustness
+
+- You will often be writing components that receive data from API endpoints, and sometimes this data can be erroneous or even missing. A good rule of thumb is if you get data from the backend or some source that isn't being made by you, assume it will be null at some point.
+
+  ```jsx
+  // an example from WOLF code
+  // this takes the user's holdings, and immediately destructures the object into all of the properties it needs
+  // and assigns them a backup default argument. in the event one of these properties is missing from the holding,
+  // it becomes 'N/A' instead of null, which lets the component gracefully handle the missing content.
+  export default function Position({holdings = [], symbol = ''}) {
+
+    ...
+
+    const {
+      price = 'N/A',
+      previousClose = 'N/A',
+      dailyPctChange = 'N/A',
+      purchasePrice = 'N/A',
+      quantity = 'N/A',
+      totalValue = 'N/A',
+      totalChange = 'N/A',
+      purchaseValue = 'N/A',
+    } = holdings.find((p) => p.symbol === symbol) ?? {};
+
+    // Now we can create more information about the position provided it exists, otherwise we have defaults
+    const change =
+      price !== 'N/A' && previousClose !== 'N/A' ? price - previousClose : 'N/A';
+
+    const totalReturnPct =
+      totalChange !== 'N/A' && purchaseValue !== 'N/A'
+        ? (totalChange / purchaseValue) * 100
+        : 'N/A';
+    const portfolioValue = holdings
+      .filter((p) => p.totalValue)
+      .reduce((a, b) => a + b.totalValue, 0);
+    const portfolioPercentage =
+      totalValue !== 'N/A' ? (totalValue / portfolioValue) * 100 : 'N/A';
+
+    ...
+
+  }
+  ```
 
 ## Testing
 
@@ -1286,7 +1329,7 @@ const PositionIndicator = ({price}) => {
 
 - If you comment something out because you don't need it, delete it instead
 
-  ```Jsx
+  ```jsx
   // bad
   const styles = StyleService.create({
     featureContainer: {
