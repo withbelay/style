@@ -30,7 +30,7 @@ Javascript as a language was developed in just 10 days, and as you might expect 
 
 - Try to avoid coercion. Make your type casts as obvious as possible because it will make the code more readable. Consider the below example
 
-  ```js
+  ```jsx
   // bad
   // is c an int or a string?
   const a = 10;
@@ -57,7 +57,7 @@ Javascript as a language was developed in just 10 days, and as you might expect 
 
 - Don't operate directly, operate on copies
 
-  ```js
+  ```jsx
   // make sure to properly copy things, js can be a little weird
 
   const user = {name: 'Michael Grant Warshowsky'};
@@ -87,7 +87,7 @@ Javascript as a language was developed in just 10 days, and as you might expect 
 
 So now this is going to sound like it completely contradicts the above statements, but there is one specific scenario where writing mutating code is actually fine, and that is in redux toolkit reducers. Redux toolkit makes use of the [Immer](https://immerjs.github.io/immer/) library, which means that redux reducers receive a *copy* of the current state called a draft which can be modified with the usual methods, then that draft is used to create the new state.
 
-```js
+```jsx
 .addCase(createAlpacaACHRelationship.fulfilled, (state, action) => {
   state.achList.push(action.payload.relationship);
 })
@@ -99,7 +99,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Global constants must be `SCREAMING_SNAKE_CASE`
 
-  ```js
+  ```jsx
   // bad
   const globalConst = 5;
 
@@ -109,7 +109,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - React components must be in `PascalCase` (Each word capitalized)
 
-  ```js
+  ```jsx
   // bad
   const reactComponent = () => <View />;
 
@@ -119,7 +119,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Functions and hooks regardless of their location must be `camelCase`
 
-  ```js
+  ```jsx
   // bad
   const myfunc = (x) => x**2;
   const MyFunc = (x) => x**2;
@@ -139,7 +139,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Local constants and testIDs must be `camelCase`
 
-  ```js
+  ```jsx
   const Component = ({}) => {
     // bad
     const LocalConst = 5;
@@ -161,7 +161,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
   > JavaScript does not have the concept of privacy in terms of properties or methods. Although a leading underscore is a common convention to mean “private”, in fact, these properties are fully public.
 
-  ```js
+  ```jsx
   // bad
   animal.__firstName__ = 'Panda';
   animal.firstName_ = 'Panda';
@@ -173,7 +173,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - A base filename should exactly match the name of its default export
 
-  ```js
+  ```jsx
   // hypothetical file contents
   const Component = () => null;
   export default Component;
@@ -187,7 +187,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Acronyms and initialisms should always be all uppercase, or all lowercase
 
-  ```Js
+  ```jsx
   // bad
   import SmsContainer from '@/containers/SmsContainer';
   
@@ -211,7 +211,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Use `const` for all of your references, don't use `var`
 
-  ```js
+  ```jsx
   // bad
   var a = 1;
   let a = 1;
@@ -222,7 +222,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
   ```
   > The reason you shouldn't use vars is because `let` and `const` are block scoped whereas `var`s are function scoped.
 
-  ```js
+  ```jsx
   // const and let only exist in the blocks they are defined in
   {
     let a = 1;
@@ -237,7 +237,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Don't chain variable assignments
 
-  ```js
+  ```jsx
   // bad
   (() => {
     // js interprets this as
@@ -266,7 +266,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - In the case you do need to reassign, use `let`, and try to encapsulate the variable that changes in a function/hook/IIFE. 
 
-  ```js
+  ```jsx
   // bad
   var count = 1;
   count += 1;
@@ -290,7 +290,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Don't leave any unused variables around
 
-  ```js
+  ```jsx
   // bad
   const some_unused_var = 42;
 
@@ -317,7 +317,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
   > Ultimately we prefer accurate, clear names over shorthand that doesn't match up with what information/function the reference is actually referring to. Terse code with long names is better than terse code with terse names.
 
-  ```js
+  ```jsx
   // a real example from WOLF code
   // wordy, but 100% accurate to what the function does and easily distinguishable from similar alerts
   export function showNoInvestmentAccountsAlert() {
@@ -330,7 +330,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Booleans must be prefixed with `is` or `has` for readability
 
-  ```js
+  ```jsx
   // bad
   const loaded = true;
   const error = false;
@@ -344,7 +344,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Use the literal syntax for object creation
 
-  ```js
+  ```jsx
   // bad
   const obj = new Object();
 
@@ -354,7 +354,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Use the property value shorthand
 
-  ```js
+  ```jsx
   const property = 'check out this cool shorthand method';
 
   // bad
@@ -370,7 +370,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Group shorthand properties together for readability
 
-  ```js
+  ```jsx
   const apple = 'apple';
   const orange = 'orange';
   
@@ -397,7 +397,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Use dot notation when accessing properties
 
-  ```js
+  ```jsx
   const theme = useTheme();
 
   // bad
@@ -413,7 +413,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Use bracket notation when accessing properties with a variable
 
-  ```js
+  ```jsx
   const theme = useTheme();
   const color = 'border';
   
@@ -424,7 +424,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Use the literal syntax for array creation
 
-  ```js
+  ```jsx
   // bad
   const array = new Array();
 
@@ -436,7 +436,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
   > Functionally manipulating arrays is often more compact and allows the various array operations to be chained together. Learn more about these functions [here](https://medium.com/poka-techblog/simplify-your-javascript-use-map-reduce-and-filter-bd02c593cc2d).
 
-  ```js
+  ```jsx
   // -- .map() --
   // bad
   for (i = 0; i < len; i += 1) {
@@ -477,7 +477,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Use the spread syntax to copy and combine arrays
 
-  ```js
+  ```jsx
   // -- copy arrays --
   // bad
   const len = array.length;
@@ -507,7 +507,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
   > Destructuring saves you from creating temporary references for those properties, and from repetitive access of the object. Repeating object access creates more repetitive code, requires more reading, and creates more opportunities for mistakes. Destructuring objects also provides a single site of definition of the object structure that is used in the block, rather than requiring reading the entire block to determine what is used.
 
-  ```js
+  ```jsx
   // bad
   const getOrder = (order) => {
     const symbol = order.symbol;
@@ -531,7 +531,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Use array destructuring
 
-  ```js
+  ```jsx
   const array = [1, 2, 3, 4];
 
   // bad
@@ -546,7 +546,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
   > This is ideal because you can add new properties over time or change the order of things without breaking call sites
 
-  ```js
+  ```jsx
   // bad
   const getSides = ({left, right, top, bottom}) => (
     [left, right, top, bottom]
@@ -568,7 +568,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Use single quotes for string literals
 
-  ```js
+  ```jsx
   // bad
   const stock = "TSLA";
 
@@ -596,7 +596,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Don't write strings over multiple lines
 
-  ```js
+  ```jsx
   // awful
   const error = 'This is an egregiously long error message' +
                 'created by the best financial data provider in the world, HubFin.' +
@@ -613,7 +613,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Use template literals over string concatenation
 
-  ```js
+  ```jsx
   // awful
   const position = ['Your $AAPL position is valued at', value, '.'].join();
 
@@ -626,7 +626,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Don't unnecessarily escape strings
 
-  ```js
+  ```jsx
   // bad
   const str = '\'this\' \i\s \"quoted\"';
   
@@ -638,7 +638,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Typecase to number with `Number`, avoid `parseInt`
 
-  ```js
+  ```jsx
   parseInt("23") // 23
   parseInt("023") // 19 (octal)
   parseInt("023", 10) // 23
@@ -649,7 +649,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Typecast to string with `String`
 
-  ```js
+  ```jsx
   const stock = {
     price: 9,
   };
@@ -667,7 +667,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
   > What this does is the first ! logically negates what was given which coerces the value to a bool, then it is negated again to get the original value, but how it would be if it were just a bool
 
-  ```js
+  ```jsx
   const unsafe = null;
   
   // bad
@@ -682,7 +682,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Use `===` and `!==` over `==` and `!=` when not comparing to `null`
 
-  ```js
+  ```jsx
   // bad
   '1' == 1; // true
 
@@ -705,7 +705,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Use shortcuts for comparisons where it makes sense
 
-  ```js
+  ```jsx
   // -- bool --
   // bad
   if (isValid === true) { ... }
@@ -736,7 +736,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
   >
   > Use `map()` / `every()` / `filter()` / `find()` / `findIndex()` / `reduce()` / `some()` / ... to iterate over arrays, and `Object.keys()` / `Object.values()` / `Object.entries()` to produce arrays so you can iterate over objects.
 
-  ```js
+  ```jsx
   const numbers = [1, 2, 3, 4, 5];
   
   // bad
@@ -774,7 +774,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Use arrow notation instead of `function` where possible. If you are trying to export a hook/function/component, then it is perfectly acceptable to use the `function` since you can't define and export a const on the same line.
 
-  ```js
+  ```jsx
   // bad
   function square(x) {
     return x**2;
@@ -793,7 +793,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Implicitly return where possible
 
-  ```js
+  ```jsx
   // best
   const square = (x) => x**2;
   ```
@@ -802,7 +802,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
   > This minimizes diff churn when adding or removing arguments
 
-  ```js
+  ```jsx
   // bad
   const square = x => x**2;
 
@@ -814,7 +814,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
   > Consider the following real WOLF example. This function takes in a number and an optional object that contains the specific configuration of how that number should be formatted. It would be incredibly unwieldy if every time you called it you gave it every single option, even if you don't actually need it.
 
-  ```js
+  ```jsx
   export function formatNumber(
     number,
     {
@@ -846,7 +846,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
 
 - Use braces with all multiline blocks
 
-  ```js
+  ```jsx
   // bad
   if (test)
     return false;
@@ -1102,7 +1102,7 @@ const barColors = useMemo(() => getRandomColors(data.length), [data.length]);
 
 "Mutations, subscriptions, timers, logging, and other side effects are  not allowed inside the main body of a function component (referred to as React’s *render phase*). Doing so will lead to confusing bugs and inconsistencies in the UI." In the event we need to perform one of these *side effects*, we have the `useEffect` hook. The function passed to `useEffect` will run after the render is committed to the screen. Similarly to `useMemo` and `useCallback`, `useEffect` accepts a dependency array, which means it will only fire if the dependencies change. You can also give it an empty one to fire it after every rerender.
 
-```js
+```jsx
 // an example from WOLF code
 // useEffect is most commonly used to fetch data
 useEffect(() => {
@@ -1206,7 +1206,7 @@ const PositionIndicator = ({price}) => {
 
   > Two simple rule to remember about rerenders is that React Native will render your component 1) whenever its props change and 2) whenever the state changes, and the problem with anonymous functions is that *identical anonymous functions are not logically equivalent*.
   >
-  > ```js
+  > ```jsx
   > () => null === () => null // false
   > ```
   >
@@ -1267,7 +1267,7 @@ const PositionIndicator = ({price}) => {
 
 - Make use of `TODO`s, `FIXME`s and `NOTE`s where it makes sense
 
-  ```js
+  ```jsx
   // TODO for things that need to be done
   // FIXME for things that don't work as they should
   // NOTE for implementation details, edge cases, etc
@@ -1308,7 +1308,7 @@ const PositionIndicator = ({price}) => {
 
 - New components and screens should always have a good docstring with a general description, list of params and what they are, and any important info you want to communicate to other devs who will come across it
 
-  ```Js
+  ```jsx
   /**
    * Widget component for showing data with a particular color and style
    * @param data {Object} data object to be rendered, should be in xyz format otherwise it will not render properly
@@ -1322,7 +1322,7 @@ const PositionIndicator = ({price}) => {
 
 - Use modules
 
-  ```js
+  ```jsx
   // bad
   const MyLib = require('@/path/MyLib');
   module.exports = MyLib.doThing;
@@ -1339,7 +1339,7 @@ const PositionIndicator = ({price}) => {
 
 - Use `@` imports over relative imports
 
-  ```js
+  ```jsx
   // bad
   import {MyLib} from './MyLib';
   
@@ -1349,7 +1349,7 @@ const PositionIndicator = ({price}) => {
 
 - Avoid wildcard imports
 
-  ```js
+  ```jsx
   // bad
   import * as MyLib from '@/path/MyLib';
   
@@ -1359,7 +1359,7 @@ const PositionIndicator = ({price}) => {
 
 - Only import from a path in one place
 
-  ```js
+  ```jsx
   // bad
   import MyLib from '@/path/MyLib';
   import { doThing, doOtherThing } from '@/path/MyLib';
@@ -1370,7 +1370,7 @@ const PositionIndicator = ({price}) => {
 
 - Don't export mutable references
 
-  ```js
+  ```jsx
   // bad
   let a = 1;
   export {a};
