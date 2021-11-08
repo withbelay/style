@@ -157,20 +157,6 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
   }
   ```
 
-- No leading or trailing underscores
-
-  > JavaScript does not have the concept of privacy in terms of properties or methods. Although a leading underscore is a common convention to mean “private”, in fact, these properties are fully public.
-
-  ```jsx
-  // bad
-  animal.__firstName__ = 'Panda';
-  animal.firstName_ = 'Panda';
-  animal._firstName = 'Panda';
-
-  // good
-  animal.firstName = 'Panda';
-  ```
-
 - A base filename should exactly match the name of its default export
 
   ```jsx
