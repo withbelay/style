@@ -2,7 +2,7 @@
 
 Welcome to the WOLF Dev Style Guide for the Frontend. This is an opinionated guide of the style, conventions, and best practices that code should adhere to in pull requests.
 
-ESLint will automatically take care of a lot for you, it is a very valuable plugin to get set up and running. We have an .eslintrc that will automatically allow ESLint to start checking the code.
+ESLint will automatically take care of a lot for you, it is a very valuable plugin to get set up and running. We have an `.eslintrc` that will automatically allow ESLint to start checking the code.
 
 A large portion of this guide was informed and uses modified examples from the [AirBnB style guide](https://github.com/airbnb/javascript#amendments) to fit WOLF's needs.
 
@@ -58,6 +58,8 @@ Javascript as a language was developed in just 10 days, and as you might expect 
 - Don't operate directly, operate on copies
 
   ```js
+  // make sure to properly copy things, js can be a little weird
+
   const user = {name: 'Michael Grant Warshowsky'};
   // let's try to copy it
   const user2 = user;
@@ -91,7 +93,7 @@ So now this is going to sound like it completely contradicts the above statement
 })
 ```
 
-This is a real redux reducer we use, as you can see, we directly manipulate the state by pushing to it. Normally this is not a good idea, but Immer is working behind the scenes to make this possible. As you can see, we don't need to spread the state or do any redux weirdness, Immer just handles it for us, and the code is much cleaner, compact, and easy to understand.
+This is a real redux reducer we use, as you can see, we directly manipulate the state by pushing to it. Normally this is not a good idea, but Immer is working behind the scenes to make this possible. As you can see, we don't need to spread the state or do any redux weirdness, Immer just handles it for us, and the code is much cleaner, compact, and easier to understand.
 
 ## Naming Conventions
 
