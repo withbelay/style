@@ -899,6 +899,7 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
   }
   
   // best
+  // this is called the 'nullish coalescing operator', if x is null it returns y, otherwise it returns x
   const foo = () => {
     return x ?? y;
   }
@@ -919,9 +920,48 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
   
   // we do this a lot in JSX, fine to do for literals and variables
   <View>
-    <Text>{hasProperty && 'Property detected'}</Text>
+    {hasProperty && <Text>'Property detected'</Text>}
   </View>
   ```
+
+- Use ternaries for short control statements and if else blocks for longer, more complex logic
+
+  ```jsx
+  // bad
+  const foo = () => {
+    if (thing) {
+      return doThis();
+    } else {
+      return doThat();
+    }
+  };
+  
+  // good
+  const foo = () => {
+    return thing ? doThis() : doThat();
+  };
+
+  // best
+  const foo = () => thing ? doThis() : doThat();
+  ```
+
+- Use ternaries & the logical AND in the JSX to conditionally render elements.
+
+  ```jsx
+  // a common 'archetype' is to render an error if it exists, or replace something that would normally display with an error 
+  // Note that error will start as null
+
+  // will render the content unless an error is present
+  <View>
+    {error ? <Text>{error}</Text> : <Content />}
+  </View>
+
+  // will render the error text below the content if one is present
+  <View>
+    <Content />
+    {error && <Text>{error}</Text>}
+  </View>
+  ``` 
 
 ## Components & CSS
 
@@ -989,13 +1029,14 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
   });
   ```
 
-- Boolean properties that are false by default can be applied by just including their name
+- Boolean properties can be applied by just including their name
 
   ```jsx
   // acceptable
   <NavBar backButton={true} />
 
   // good
+  // this is just shorthand for the above
   <NavBar backButton />
   ```
 
@@ -1074,9 +1115,34 @@ const doubler = useCallback(
 
 ### [useMemo](https://reactjs.org/docs/hooks-reference.html#usememo)
 
-`useMemo` is the same as `useCallback` but instead of returning a memoized callback, it returns a memoized value. Similarly to `useCallback`, you should only use this for things that are expensive
+`useMemo` is the same as `useCallback` but instead of returning a memoized callback, it returns a memoized value. Similarly to `useCallback`, you should only use this for things that are expensive. They may seem like they do the same thing because they both take a function and an array of dependencies, but the difference is that `useCallback` *returns* its function and `useMemo` *runs* its function and returns the result.
 
 ```jsx
+// an illustrated example of the differences between useMemo and useCallback
+
+const foo = useCallback(() => {
+  console.log('foo');
+}, []);
+
+foo(); // foo printed
+console.log(foo); // function
+
+const foo = useMemo(() => {
+  console.log('foo');
+}, []); // foo printed
+
+foo(); // ReferenceError
+console.log(foo); // null, the func returns nothing, just gets ran immediately
+
+// this is the same as the useMemo code
+// the difference is the () at the end
+const foo = useCallback(() => {
+  console.log('foo');
+}, [])();
+```
+
+```jsx
+// some examples of useMemo
 const memo = useMemo(() => myExpensiveOperation(data), [data]);
 
 // an example from WOLF code
@@ -1095,6 +1161,8 @@ useEffect(() => {
   fetchProfileSubmissionsPage(user._id);
 }, [fetchProfileSubmissionsPage, user._id]);
 ```
+
+The most common use case for this hook is to fetch data after a screen loads to populate it, this will cause another rerender though so try to preload your data if it makes sense to do so and prefer to pass things in through route.params if possible.
 
 ### [useRef](https://reactjs.org/docs/hooks-reference.html#useref)
 
@@ -1357,11 +1425,11 @@ const PositionIndicator = ({price}) => {
   module.exports = MyLib.doThing;
   
   // getting there
-  import MyLib from '@/path/MyLib';
+  import doThing from '@/path/MyLib';
   export default MyLib.doThing;
   
   // best
-  import {MyLib} from '@/path/MyLib';
+  import {doThing} from '@/path/MyLib';
   export default doThing;
   ```
 
@@ -1377,12 +1445,14 @@ const PositionIndicator = ({price}) => {
   ```
 
 - Avoid wildcard imports
+  > Why? This makes sure you have a single default export.
 
   ```jsx
   // bad
   import * as MyLib from '@/path/MyLib';
   
   // good
+  // but note this will fail if you don't have a default export
   import MyLib from '@/path/MyLib';
   ```
 
@@ -1391,10 +1461,10 @@ const PositionIndicator = ({price}) => {
   ```jsx
   // bad
   import MyLib from '@/path/MyLib';
-  import { doThing, doOtherThing } from '@/path/MyLib';
+  import {doThing, doOtherThing} from '@/path/MyLib';
   
   // good
-  import MyLib, { doThing, doOtherThing } from '@/path/MyLib';
+  import MyLib, {doThing, doOtherThing} from '@/path/MyLib';
   ```
 
 - Don't export mutable references
