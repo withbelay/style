@@ -690,6 +690,9 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
   - Read more from this [guide on equality in js](https://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108) by Angus Croll
 
 - Use shortcuts for comparisons where it makes sense
+  > Reminder to avoid using control flow statements in the JSX, it's better to just use ternaries and the logical AND because of the compactness and it avoids issues with 'The text node needs to be wrapped in <Text>' error
+  >
+  > See the Control Statements section for more
 
   ```jsx
   // -- bool --
