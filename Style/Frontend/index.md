@@ -1097,12 +1097,12 @@ const Widget = ({}) => {
 
 ### [useCallback](https://reactjs.org/docs/hooks-reference.html#usecallback)
 
-When you define something in a component, it is created on each render. What `useCallback` does is it lets you define something, and it only gets redefined if the dependencies of that thing changes. What this means is it lets you memoize some arbitrary callback, so very useful if you have a subcomponent defined in the main component or if you have a very heavy function that shouldn't be ran on each render.
+When you define something in a component, it is created on each render. What `useCallback` does is it lets you define something, and it only gets redefined if the dependencies of that thing changes. What this means is it lets you memoize some arbitrary callback, so very useful if you have a sub-component defined in the main component or if you have a very heavy function that shouldn't be ran on each render.
 
 ```jsx
 const foo = (data) => myExpensiveOperation(data); // gets created every render
 
-// callbackized version
+// callback-ized version
 const foo = useCallback(
   () => myExpensiveOperation(data),
   [data], // dependency array, means this only runs again if data changes
@@ -1165,7 +1165,7 @@ useEffect(() => {
 }, [fetchProfileSubmissionsPage, user._id]);
 ```
 
-The most common use case for this hook is to fetch data after a screen loads to populate it, this will cause another rerender though so try to preload your data if it makes sense to do so and prefer to pass things in through route.params if possible.
+The most common use case for this hook is to fetch data after a screen loads to populate it, this will cause another rerender though so try to pre-load your data if it makes sense to do so and prefer to pass things in through route.params if possible.
 
 ### [useRef](https://reactjs.org/docs/hooks-reference.html#useref)
 
