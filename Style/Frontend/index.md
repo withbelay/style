@@ -953,18 +953,18 @@ This is a real redux reducer we use, as you can see, we directly manipulate the 
   ```jsx
   // a common 'archetype' is to render an error if it exists, or replace something that would normally display with an error 
   // Note that error will start as null
-
+  
   // will render the content unless an error is present
   <View>
     {error ? <Text>{error}</Text> : <Content />}
   </View>
-
+  
   // will render the error text below the content if one is present
   <View>
     <Content />
     {error && <Text>{error}</Text>}
   </View>
-  ``` 
+  ```
 
 ## Components & CSS
 
@@ -1322,9 +1322,9 @@ const PositionIndicator = ({price}) => {
   // and assigns them a backup default argument. in the event one of these properties is missing from the holding,
   // it becomes 'N/A' instead of null, which lets the component gracefully handle the missing content.
   export default function Position({holdings = [], symbol = ''}) {
-
+  
     ...
-
+  
     const {
       price = 'N/A',
       previousClose = 'N/A',
@@ -1335,11 +1335,11 @@ const PositionIndicator = ({price}) => {
       totalChange = 'N/A',
       purchaseValue = 'N/A',
     } = holdings.find((p) => p.symbol === symbol) ?? {};
-
+  
     // Now we can create more information about the position provided it exists, otherwise we have defaults
     const change =
       price !== 'N/A' && previousClose !== 'N/A' ? price - previousClose : 'N/A';
-
+  
     const totalReturnPct =
       totalChange !== 'N/A' && purchaseValue !== 'N/A'
         ? (totalChange / purchaseValue) * 100
@@ -1349,18 +1349,41 @@ const PositionIndicator = ({price}) => {
       .reduce((a, b) => a + b.totalValue, 0);
     const portfolioPercentage =
       totalValue !== 'N/A' ? (totalValue / portfolioValue) * 100 : 'N/A';
-
+  
     ...
-
+  
   }
   ```
 
 ## Testing
 
 - New components should always be accompanied by a corresponding jest test. Learn about [jest](https://jestjs.io/) and read through our tests to get an idea of how we utilize it
+
+- A new component should always be accompanied with a snapshot test of it's major working states (example: do not make a snapshot for every resolution in a chart, more snapshots just slows down the tests) and one of it's error states if it has one or more
+
+  ```jsx
+  // A snapshot test looks something like this
+  describe('@/components/finance/AnalysisWidgets/EarningsPreview', () => {
+   
+    ...
+    
+    test('it renders with mock data', () => {
+      const tree = render(<EarningsPreview analysis={MOCK_ANALYSIS} />);
+      expect(tree).toMatchSnapshot();
+    });
+  });
+  ```
+
 - Bug fixes should always be accompanied by a corresponding regression test
+
+  > Usually a regression is going to be some form of UI regression that wasn't noticed. In that case, simply making sure that the component that broke has a good snapshot test is all that is needed.
+
 - Be cautious about stubs and mocks - they can make your tests more brittle
+
+- TestIDs are named in a specific way. They must be in the form `<component name>.<purpose>.<index if applicable>`. Let's say we have a `LikedList` that shows all of the user's liked posts. The first item in the list would have the testId `likedList.post.0`.
+
 - Strive to write many small pure functions, and minimize where mutations occur
+
 - 100% test coverage is a good goal to strive for, even if it’s not always practical to reach it
 
 ## Comments & Docstrings
